@@ -1,122 +1,211 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const projects = [
+  {
+    id: 1,
+    title: "Summer Math Printable",
+    folder: "Teaching Materials",
+    type: "A4 Landscape",
+    year: 2026,
+    edited: "2 days ago",
+    thumbnail: "🧮",
+  },
+  {
+    id: 2,
+    title: "Portfolio Presentation",
+    folder: "Career / Portfolio",
+    type: "Presentation",
+    year: 2026,
+    edited: "3 days ago",
+    thumbnail: "✨",
+  },
+  {
+    id: 3,
+    title: "Game Design Brief",
+    folder: "University Projects",
+    type: "Document",
+    year: 2025,
+    edited: "20 days ago",
+    thumbnail: "🎲",
+  },
+  {
+    id: 4,
+    title: "Instagram Campaign Draft",
+    folder: "Social Media",
+    type: "Post",
+    year: 2024,
+    edited: "8 months ago",
+    thumbnail: "📱",
+  },
+  {
+    id: 5,
+    title: "Old UX Moodboard",
+    folder: "Design Research",
+    type: "Moodboard",
+    year: 2023,
+    edited: "2 years ago",
+    thumbnail: "🎨",
+  },
+];
 
+function IconRail() {
+  const items = ["＋", "⌂", "▣", "◫", "✦", "•••"];
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <nav className="iconRail">
+      <div className="miniLogo">D</div>
+      {items.map((item, index) => (
         <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          key={item}
+          className={`railButton ${index === 2 ? "active" : ""}`}
         >
-          Count is {count}
+          {item}
         </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      ))}
+      <div className="railBottom">
+        <button className="railButton">🔔</button>
+        <button className="profileButton">J</button>
+      </div>
+    </nav>
+  );
 }
 
-export default App
+function ProjectNav() {
+  return (
+    <aside className="projectNav">
+      <h1 className="brand">Design Archive</h1>
+
+      <div className="navSection">
+        <button className="navItem selected">📁 All projects</button>
+        <button className="navItem">🔵 Your projects</button>
+        <button className="navItem">👥 Shared with you</button>
+        <button className="navItem">✓ Available offline</button>
+      </div>
+
+      <div className="tipCard">
+        <button className="closeTip">×</button>
+        <strong>Organise older work</strong>
+        <p>
+          Group designs by year or folder so past projects are easier to
+          retrieve.
+        </p>
+      </div>
+
+      <button className="trash">🗑 Trash</button>
+    </aside>
+  );
+}
+
+function Sidebar() {
+  return (
+    <div className="sidebar">
+      <IconRail />
+      <ProjectNav />
+    </div>
+  );
+}
+
+function TopHero() {
+  return (
+    <section className="hero">
+      <div className="heroActions">
+        <button className="softButton">✦ Redesign concept</button>
+        <button className="trialButton">Portfolio demo</button>
+      </div>
+
+      <h2>All projects</h2>
+
+      <div className="searchBar">
+        <span>⌕</span>
+        <input placeholder="Search by project, folder, keyword, or year" />
+      </div>
+    </section>
+  );
+}
+
+function Filters() {
+  return (
+    <div className="filters">
+      <button className="clearFilter">×</button>
+      <button className="filter active">Designs ▾</button>
+      <button className="filter">Category ▾</button>
+      <button className="filter">Owner ▾</button>
+      <button className="filter highlight">Year ▾</button>
+      <button className="filter">Date modified ▾</button>
+    </div>
+  );
+}
+
+function ProjectTable() {
+  return (
+    <section className="projectArea">
+      <div className="viewTools">
+        <span></span>
+        <div>
+          <button>↕</button>
+          <button>▦</button>
+          <button className="addButton">＋</button>
+        </div>
+      </div>
+
+      <div className="tableHeader">
+        <span>Name</span>
+        <span>Folder</span>
+        <span>Type</span>
+        <span>Edited</span>
+      </div>
+
+      {projects.map((project) => (
+        <div className="projectRow" key={project.id}>
+          <div className="projectName">
+            <div className="thumb">{project.thumbnail}</div>
+            <div>
+              <strong>{project.title}</strong>
+              <p>{project.year}</p>
+            </div>
+          </div>
+          <span className="folderPill">{project.folder}</span>
+          <span>{project.type}</span>
+          <span>{project.edited}</span>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+function FolderPreview() {
+  const folders = ["2026", "2025", "2024", "2023"];
+
+  return (
+    <section className="folderPreview">
+      <div className="sectionTitle">
+        <h3>Year-based archive</h3>
+        <p>Proposed improvement for long-term project retrieval</p>
+      </div>
+
+      <div className="folderGrid">
+        {folders.map((year) => (
+          <article className="folderCard" key={year}>
+            <div className="folderIcon">📂</div>
+            <strong>{year} Projects</strong>
+            <p>Grouped designs, assets, and related folders</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default function App() {
+  return (
+    <div className="app">
+      <Sidebar />
+
+      <main className="mainContent">
+        <TopHero />
+        <Filters />
+        <FolderPreview />
+        <ProjectTable />
+      </main>
+    </div>
+  );
+}
