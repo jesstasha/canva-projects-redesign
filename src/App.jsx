@@ -149,7 +149,7 @@ function TopHero() {
     <section className="hero">
       <div className="heroActions">
         <button className="softButton">✦ Sneak peek</button>
-        <button className="trialButton">Start your trial for $0</button>
+        <button className="trialButton">👑 Start your trial for $0</button>
       </div>
 
       <h2>All projects</h2>
