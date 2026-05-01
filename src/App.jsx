@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 const projects = [
@@ -48,21 +49,40 @@ const projects = [
   },
 ];
 
-function IconRail() {
-  const items = ["＋", "⌂", "▣", "◫", "✦", "•••"];
+function IconRail({ onToggle }) {
+  const items = [
+    { icon: "＋", label: "Create" },
+    { icon: "⌂", label: "Home" },
+    { icon: "▣", label: "Projects", active: true },
+    { icon: "◫", label: "Templates" },
+    { icon: "◉", label: "Brand" },
+    { icon: "✦", label: "Canva AI" },
+    { icon: "▤", label: "Print Shop" },
+    { icon: "•••", label: "More" },
+  ];
+
   return (
     <nav className="iconRail">
-      <div className="miniLogo">D</div>
-      {items.map((item, index) => (
+      <button className="collapseButton" onClick={onToggle} aria-label="Toggle sidebar">
+        ◧
+      </button>
+
+      {items.map((item) => (
         <button
-          key={item}
-          className={`railButton ${index === 2 ? "active" : ""}`}
+          key={item.label}
+          className={`railItem ${item.active ? "active" : ""}`}
         >
-          {item}
+          <span className="railIcon">{item.icon}</span>
+          <span className="railLabel">{item.label}</span>
         </button>
       ))}
+
       <div className="railBottom">
-        <button className="railButton">🔔</button>
+        <button className="railItem">
+          <span className="railIcon">🔔</span>
+          <span className="railLabel">Alerts</span>
+        </button>
+
         <button className="profileButton">J</button>
       </div>
     </nav>
@@ -70,6 +90,8 @@ function IconRail() {
 }
 
 function ProjectNav() {
+  const [showTip, setShowTip] = useState(true);
+
   return (
     <aside className="projectNav">
       <h1 className="brand">Design Archive</h1>
@@ -81,25 +103,43 @@ function ProjectNav() {
         <button className="navItem">✓ Available offline</button>
       </div>
 
-      <div className="tipCard">
-        <button className="closeTip">×</button>
-        <strong>Organise older work</strong>
-        <p>
-          Group designs by year or folder so past projects are easier to
-          retrieve.
-        </p>
-      </div>
+      {showTip && (
+        <div className="tipCard">
+          <button className="closeTip" onClick={() => setShowTip(false)}>×</button>
+          <strong>Star designs and folders</strong>
+          <p>
+            Star your most important items by selecting the star icon on a design or folder.
+          </p>
+        </div>
+      )}
 
       <button className="trash">🗑 Trash</button>
     </aside>
   );
 }
 
-function Sidebar() {
+function Sidebar({ collapsed, onToggle }) {
   return (
-    <div className="sidebar">
-      <IconRail />
-      <ProjectNav />
+    <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
+      <IconRail onToggle={onToggle} />
+      {!collapsed && <ProjectNav />}
+    </div>
+  );
+}
+
+export default function App() {
+  const [collapsed, setCollapsed] = useState(false);
+
+  return (
+    <div className="app">
+      <Sidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} />
+
+      <main className="mainContent">
+        <TopHero />
+        <Filters />
+        <FolderPreview />
+        <ProjectTable />
+      </main>
     </div>
   );
 }
@@ -108,8 +148,8 @@ function TopHero() {
   return (
     <section className="hero">
       <div className="heroActions">
-        <button className="softButton">✦ Redesign concept</button>
-        <button className="trialButton">Portfolio demo</button>
+        <button className="softButton">✦ Sneak peek</button>
+        <button className="trialButton">Start your trial for $0</button>
       </div>
 
       <h2>All projects</h2>
@@ -195,17 +235,3 @@ function FolderPreview() {
   );
 }
 
-export default function App() {
-  return (
-    <div className="app">
-      <Sidebar />
-
-      <main className="mainContent">
-        <TopHero />
-        <Filters />
-        <FolderPreview />
-        <ProjectTable />
-      </main>
-    </div>
-  );
-}

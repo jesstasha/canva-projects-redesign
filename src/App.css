@@ -21,9 +21,10 @@ button {
 }
 
 .app {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   background: #ffffff;
+  overflow: hidden;
 }
 
 /* Sidebar */
@@ -34,17 +35,64 @@ button {
   display: flex;
   background: #f6f1ff;
   border-right: 1px solid #eee6ff;
+  flex-shrink: 0;
+}
+.sidebar.collapsed {
+  width: 72px;
+}
+
+.collapseButton {
+  width: 40px;
+  height: 32px;
+  border-radius: 10px;
+  background: transparent;
+  color: #5d4b76;
+  font-size: 20px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+}
+
+.collapseButton:hover {
+  background: #e6dcff;
 }
 
 .iconRail {
-  width: 74px;
-  padding: 18px 12px;
+  width: 60px;
+  padding: 14px 3px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
   background: #fbf8ff;
 }
+.railItem {
+  width: 52px;
+  min-height: 52px;
+  border-radius: 12px;
+  background: transparent;
+  color: #6d45b8;
+  display: grid;
+  place-items: center;
+  gap: 3px;
+  padding: 6px 4px;
+}
+.railItem:hover,
+.railItem.active {
+  background: #e6dcff;
+}
+
+.railIcon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.railLabel {
+  font-size: 11px;
+  line-height: 1;
+}
+
+이러면 원
 
 .miniLogo {
   width: 24px;
@@ -60,14 +108,14 @@ button {
 }
 
 .railButton {
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
   background: transparent;
   color: #6d45b8;
   display: grid;
   place-items: center;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .railButton:hover,
@@ -75,11 +123,6 @@ button {
   background: #e6dcff;
 }
 
-.railBottom {
-  margin-top: auto;
-  display: grid;
-  gap: 12px;
-}
 
 .profileButton {
   width: 40px;
@@ -92,14 +135,15 @@ button {
 
 .projectNav {
   flex: 1;
-  padding: 24px 18px;
+  padding: 18px 14px;
   display: flex;
   flex-direction: column;
 }
 
 .brand {
-  margin: 0 0 26px;
-  font-size: 26px;
+  margin: 0 0 21px;
+  font-size: 21px;
+  margin-bottom: 20px;
   letter-spacing: -0.04em;
   background: linear-gradient(90deg, #00a6c7, #7c3aed);
   -webkit-background-clip: text;
@@ -114,8 +158,9 @@ button {
 .navItem {
   width: 100%;
   text-align: left;
-  padding: 13px 16px;
-  border-radius: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
   background: transparent;
   color: #2d2640;
 }
@@ -128,35 +173,40 @@ button {
 }
 
 .tipCard {
-  margin-top: 28px;
-  padding: 18px;
+  margin-top: 22px;
+  padding: 13px 14px;
   border: 2px dashed #ddd2f3;
-  border-radius: 18px;
+  border-radius: 14px;
   background: #fbf8ff;
   position: relative;
   text-align: center;
+  font-size: 12px;
+}
+.tipCard strong{
+  font-size: 12px;
 }
 
 .tipCard p {
   margin: 10px 0 0;
-  font-size: 14px;
+  font-size: 12px;
   color: #6b6475;
-  line-height: 1.45;
+  line-height: 1.35;
 }
 
 .closeTip {
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 8px;
+  right: 9px;
   background: transparent;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .trash {
   margin-top: auto;
   text-align: left;
-  padding: 13px 16px;
+  padding: 10px 12px;
   border-radius: 12px;
+  font-size: 14px;
   background: transparent;
   color: #2d2640;
 }
@@ -166,13 +216,15 @@ button {
 .mainContent {
   flex: 1;
   min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
   background: white;
   padding-bottom: 60px;
 }
 
 .hero {
-  min-height: 230px;
-  padding: 28px 72px 34px;
+  min-height: 210px;
+  padding: 24px 64px 30px;
   background: radial-gradient(circle at left, #dffbff 0, #f5ecff 45%, #fff 100%);
   border-bottom-left-radius: 28px;
   border-bottom-right-radius: 28px;
@@ -186,11 +238,12 @@ button {
 
 .softButton,
 .trialButton {
-  padding: 12px 18px;
+  padding: 10px 15px;
   border-radius: 999px;
   background: white;
   box-shadow: 0 4px 16px rgba(91, 56, 168, 0.12);
   font-weight: 700;
+  font-size: 14px;
 }
 
 .softButton {
@@ -202,22 +255,22 @@ button {
 }
 
 .hero h2 {
-  margin: 20px 0 26px;
+  margin: 16px 0 24px;
   text-align: center;
-  font-size: 42px;
+  font-size: 36px;
   letter-spacing: -0.05em;
 }
 
 .searchBar {
-  max-width: 840px;
-  height: 70px;
+  max-width: 760px;
+  height: 58px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 0 24px;
   border: 2px solid #8b3dff;
-  border-radius: 22px;
+  border-radius: 18px;
   background: white;
 }
 
@@ -229,7 +282,7 @@ button {
   flex: 1;
   border: none;
   outline: none;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 /* Filters */
@@ -238,17 +291,18 @@ button {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: -22px;
+  margin-top: -20px;
   padding: 0 40px;
 }
 
 .filter,
 .clearFilter {
-  padding: 12px 18px;
+  padding: 10px 15px;
   border-radius: 999px;
   background: white;
   border: 1px solid #ece5f9;
   box-shadow: 0 4px 12px rgba(82, 53, 126, 0.08);
+  font-size: 14px;
 }
 
 .filter.active,
@@ -268,16 +322,16 @@ button {
 /* Folder proposal */
 
 .folderPreview {
-  padding: 48px 72px 12px;
+  padding: 36px 64px 8px;
 }
 
 .sectionTitle h3 {
   margin: 0;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .sectionTitle p {
-  margin: 6px 0 20px;
+  margin: 6px 0 14px;
   color: #6b6475;
 }
 
@@ -288,7 +342,7 @@ button {
 }
 
 .folderCard {
-  padding: 20px;
+  padding: 16px;
   border-radius: 20px;
   border: 1px solid #eee8f8;
   background: #fbf9ff;
@@ -309,14 +363,18 @@ button {
 .folderCard p {
   margin: 8px 0 0;
   color: #6b6475;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.4;
+}
+
+.folderCard strong {
+  font-size: 14px;
 }
 
 /* Table */
 
 .projectArea {
-  padding: 24px 72px;
+  padding: 20px 64px;
 }
 
 .viewTools {
@@ -358,11 +416,13 @@ button {
   border-bottom: 1px solid #e8e2ef;
   color: #3d334d;
   font-weight: 800;
+  font-size: 14px;
 }
 
 .projectRow {
-  min-height: 86px;
+  min-height: 74px;
   padding: 12px;
+  font-size: 14px;
   border-bottom: 1px solid #eee9f5;
 }
 
@@ -391,28 +451,28 @@ button {
 }
 
 .thumb {
-  width: 58px;
-  height: 58px;
+  width: 50px;
+  height: 50px;
   display: grid;
   place-items: center;
   border-radius: 12px;
   background: linear-gradient(135deg, #e0f7ff, #fff0f6);
-  font-size: 28px;
+  font-size: 24px;
   flex: 0 0 auto;
 }
 
 .folderPill {
   width: fit-content;
-  padding: 8px 12px;
+  padding: 7px 10px;
   border-radius: 999px;
   background: #f0ecf7;
-  font-size: 14px;
+  font-size: 12px;
   color: #4a405a;
 }
 
 @media (max-width: 950px) {
   .sidebar {
-    width: 86px;
+    width: 300px;
   }
 
   .projectNav {
@@ -441,4 +501,9 @@ button {
   .projectRow > span:nth-child(4) {
     display: none;
   }
+}
+.railBottom {
+  margin-top: auto;
+  display: grid;
+  gap: 10px;
 }
