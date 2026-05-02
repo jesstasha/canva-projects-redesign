@@ -696,3 +696,432 @@ button {
 }
 
 
+.sortDropdown {
+  position: relative;
+}
+
+.sortButton {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  background: white;
+  border: 1px solid #e8e2ef;
+  font-size: 18px;
+}
+
+.sortMenu {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 300px;
+  background: white;
+  border: 1px solid #eee8f8;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(52, 35, 87, 0.16);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.sortTitle {
+  padding: 16px;
+  font-weight: 800;
+  font-size: 18px;
+  border-bottom: 1px solid #eee8f8;
+}
+
+.sortItem {
+  width: 100% !important;
+  height: 44px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: white;
+  padding: 0 16px;
+  font-size: 15px;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.sortItem:hover,
+.sortItem.selected {
+  background: #f1eff5;
+}
+
+/* Folder proposal */
+
+.folderPreview {
+  padding: 36px 64px 8px;
+}
+
+.sectionTitle h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.sectionTitle p {
+  margin: 6px 0 14px;
+  color: #6b6475;
+}
+
+.folderWindow {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.folderTrack {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.35s ease;
+}
+
+.folderTrack .folderCard {
+  flex: 0 0 calc((100% - 48px) / 4);
+}
+
+.folderSlider {
+  position: relative;
+  z-index: 1;
+}
+.sliderArrow {
+  position: absolute;
+  right: -22px;
+  left: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e8e2ef;
+  box-shadow: 0 8px 24px rgba(52, 35, 87, 0.12);
+  font-size: 34px;
+  color: #4f22b8;
+  display: grid;
+  place-items: center;
+  z-index: 50;
+}
+
+
+
+.sliderArrow:hover {
+  background: #f4efff;
+}
+
+.folderCard {
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid #eee8f8;
+  background: #fbf9ff;
+  box-shadow: 0 8px 24px rgba(52, 35, 87, 0.06);
+}
+
+.folderIcon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #eee6ff;
+  font-size: 26px;
+  margin-bottom: 14px;
+}
+
+.folderCard p {
+  margin: 8px 0 0;
+  color: #6b6475;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.folderCard strong {
+  font-size: 14px;
+}
+
+/* Table */
+
+.projectArea {
+  padding: 20px 64px;
+}
+
+.viewTools {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.viewTools div {
+  display: flex;
+  gap: 12px;
+}
+
+.viewTools button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e8e2ef;
+  font-size: 18px;
+}
+
+.viewTools .addButton {
+  width: 52px;
+  height: 52px;
+  font-size: 28px;
+}
+
+.tableHeader,
+.projectRow {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 0.7fr 0.6fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.tableHeader {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e8e2ef;
+  color: #3d334d;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.projectRow {
+  min-height: 74px;
+  padding: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee9f5;
+}
+
+.projectRow:hover {
+  background: #fbf9ff;
+}
+
+.projectName {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.projectName strong {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectName p {
+  margin: 4px 0 0;
+  color: #827a8f;
+  font-size: 14px;
+}
+
+.thumb {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e0f7ff, #fff0f6);
+  font-size: 24px;
+  flex: 0 0 auto;
+}
+
+.folderPill {
+  width: fit-content;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f0ecf7;
+  font-size: 12px;
+  color: #4a405a;
+}
+
+@media (max-width: 950px) {
+  .sidebar {
+    width: 300px;
+  }
+
+  .projectNav {
+    display: none;
+  }
+
+  .hero,
+  .folderPreview,
+  .projectArea {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .folderGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tableHeader,
+  .projectRow {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
+  .tableHeader span:nth-child(3),
+  .tableHeader span:nth-child(4),
+  .projectRow > span:nth-child(3),
+  .projectRow > span:nth-child(4) {
+    display: none;
+  }
+}
+.railBottom {
+  margin-top: auto;
+  display: grid;
+  gap: 10px;
+}
+/* --- Button override fix --- */
+
+.softButton,
+.trialButton {
+  padding: 10px 15px;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(91, 56, 168, 0.12);
+  font-weight: 700;
+  font-size: 14px;
+  transition: background 0.15s ease;
+}
+
+.softButton {
+  background: rgba(255, 255, 255, 0.6);
+  color: #221930;
+}
+
+.softButton:hover {
+  background: white;
+}
+
+.trialButton {
+  background: white;
+  color: #221930;
+}
+
+.trialButton:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+
+/* --- Stronger button hover contrast --- */
+
+.softButton {
+  background: rgba(255, 255, 255, 0.38);
+  color: #221930;
+}
+
+.softButton:hover {
+  background: #ffffff;
+}
+
+.trialButton {
+  background: #ffffff;
+  color: #221930;
+}
+
+.trialButton:hover {
+  background: rgba(255, 255, 255, 0.38);
+}
+
+
+/* --- Stronger button hover contrast --- */
+
+.softButton {
+  background: rgba(255, 255, 255, 0.38);
+  color: #221930;
+}
+
+.softButton:hover {
+  background: #ffffff;
+}
+
+.trialButton {
+  background: #ffffff;
+  color: #221930;
+}
+
+.trialButton:hover {
+  background: rgba(255, 255, 255, 0.38);
+}
+
+
+.sortDropdown {
+  position: relative;
+}
+
+.sortDropdown .viewToolButton {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e8e2ef;
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+}
+
+.sortMenu {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 300px;
+  background: white;
+  border: 1px solid #eee8f8;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(52, 35, 87, 0.16);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.sortTitle {
+  padding: 16px;
+  font-weight: 800;
+  font-size: 18px;
+  border-bottom: 1px solid #eee8f8;
+}
+
+.sortMenu .sortItem {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  padding: 14px 16px;
+  background: white;
+  text-align: left;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sortMenu .sortItem:hover,
+.sortMenu .sortItem.selected {
+  background: #f1eff5;
+}
+/* Fix sort dropdown to behave like Canva vertical menu */
+.viewTools .sortMenu {
+  display: block !important;
+}
+
+.viewTools .sortTitle {
+  display: block !important;
+}
+
+.viewTools .sortItem {
+  display: flex !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 14px 16px !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
