@@ -163,13 +163,43 @@ function TopHero() {
 }
 
 function Filters() {
+  const [openYear, setOpenYear] = useState(false);
+
+  const years = ["2026", "2025", "2024", "2023", "2022"];
+
   return (
     <div className="filters">
       <button className="clearFilter">×</button>
+
       <button className="filter active">Designs ▾</button>
       <button className="filter">Category ▾</button>
       <button className="filter">Owner ▾</button>
-      <button className="filter highlight">Year ▾</button>
+
+      <div className="filterDropdown">
+        <button
+          className={`filter highlight ${openYear ? "opened" : ""}`}
+          onClick={() => setOpenYear(!openYear)}
+        >
+          Year ▾
+        </button>
+
+        {openYear && (
+          <div className="dropdownMenu">
+            <div className="dropdownTitle">Year</div>
+
+            <button className="dropdownItem selected">
+              Any year <span>✓</span>
+            </button>
+
+            {years.map((year) => (
+              <button className="dropdownItem" key={year}>
+                {year}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       <button className="filter">Date modified ▾</button>
     </div>
   );
