@@ -1125,3 +1125,47 @@ button {
   align-items: center !important;
 }
 
+
+/* Canva-style list columns */
+.tableHeader,
+.projectRow,
+.canvaListHeader,
+.canvaListRow {
+  grid-template-columns: 1.6fr 0.8fr 0.7fr 0.7fr 0.35fr !important;
+}
+
+.peoplePill {
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f0ecf7;
+  font-size: 12px;
+  color: #4a405a;
+}
+
+.canvaListRow .rowActions {
+  display: flex !important;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.canvaListRow .rowActions button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  box-shadow: none !important;
+  border: none !important;
+  width: 28px !important;
+  height: 28px !important;
+  font-size: 20px !important;
+  color: #1f1f28;
+}
+
+.canvaListRow .moreButton {
+  font-size: 16px !important;
+  font-weight: 500;
+  letter-spacing: -1px;
+  color: #4a405a;
+}
+

@@ -217,15 +217,16 @@ function ProjectTable() {
         </div>
       </div>
 
-      <div className="tableHeader">
+      <div className="tableHeader canvaListHeader">
         <span>Name</span>
-        <span>Folder</span>
+        <span>People</span>
         <span>Type</span>
-        <span>Edited</span>
+        <span>Edited ↓</span>
+        <span></span>
       </div>
 
       {projects.map((project) => (
-        <div className="projectRow" key={project.id}>
+        <div className="projectRow canvaListRow" key={project.id}>
           <div className="projectName">
             <div className="thumb">{project.thumbnail}</div>
             <div>
@@ -233,9 +234,15 @@ function ProjectTable() {
               <p>{project.year}</p>
             </div>
           </div>
-          <span className="folderPill">{project.folder}</span>
+
+          <span className="peoplePill">🔒 Private</span>
           <span>{project.type}</span>
           <span>{project.edited}</span>
+
+          <div className="rowActions">
+            <button>☆</button>
+            <button className="moreButton">•••</button>
+          </div>
         </div>
       ))}
     </section>
