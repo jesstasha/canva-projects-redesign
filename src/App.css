@@ -414,6 +414,8 @@ button {
 .folderWindow {
   overflow: hidden;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .folderTrack {
@@ -428,11 +430,12 @@ button {
 
 .folderSlider {
   position: relative;
+  z-index: 1;
 }
-
 .sliderArrow {
   position: absolute;
   right: -22px;
+  left: auto;
   top: 50%;
   transform: translateY(-50%);
   width: 48px;
@@ -445,7 +448,10 @@ button {
   color: #4f22b8;
   display: grid;
   place-items: center;
+  z-index: 50;
 }
+
+
 
 .sliderArrow:hover {
   background: #f4efff;

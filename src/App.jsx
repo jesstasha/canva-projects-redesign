@@ -266,7 +266,7 @@ function FolderPreview() {
 
       <div className="folderSlider">
         {startIndex > 0 && (
-          <button className="sliderArrow left" onClick={showPreviousYears}>
+          <button className="sliderArrow" onClick={showPreviousYears}>
             ‹
           </button>
         )}
