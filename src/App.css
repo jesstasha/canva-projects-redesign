@@ -94,7 +94,6 @@ button {
   white-space: nowrap;
 }
 
-이러면 원
 
 .miniLogo {
   width: 24px;
@@ -343,9 +342,7 @@ button {
   font-size: 24px;
 }
 
-.filterDropdown {
-  position: relative;
-}
+
 
 .filter.opened {
   border-color: #8b3dff;
@@ -386,6 +383,18 @@ button {
 .dropdownItem.selected {
   background: #f1eff5;
 }
+
+.filterDropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filterDropdown .filter {
+  height: 42px;
+  display: flex;
+  align-items: center;
+}
 /* Folder proposal */
 
 .folderPreview {
@@ -402,10 +411,44 @@ button {
   color: #6b6475;
 }
 
-.folderGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(140px, 1fr));
+.folderWindow {
+  overflow: hidden;
+  width: 100%;
+}
+
+.folderTrack {
+  display: flex;
   gap: 16px;
+  transition: transform 0.35s ease;
+}
+
+.folderTrack .folderCard {
+  flex: 0 0 calc((100% - 48px) / 4);
+}
+
+.folderSlider {
+  position: relative;
+}
+
+.sliderArrow {
+  position: absolute;
+  right: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e8e2ef;
+  box-shadow: 0 8px 24px rgba(52, 35, 87, 0.12);
+  font-size: 34px;
+  color: #4f22b8;
+  display: grid;
+  place-items: center;
+}
+
+.sliderArrow:hover {
+  background: #f4efff;
 }
 
 .folderCard {
@@ -645,4 +688,5 @@ button {
 .trialButton:hover {
   background: rgba(255, 255, 255, 0.38);
 }
+
 

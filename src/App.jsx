@@ -241,9 +241,21 @@ function ProjectTable() {
     </section>
   );
 }
-
 function FolderPreview() {
-  const folders = ["2026", "2025", "2024", "2023"];
+  const allYears = ["2026", "2025", "2024", "2023", "2022", "2021", "2020"];
+  const [startIndex, setStartIndex] = useState(0);
+
+  function showNextYears() {
+    if (startIndex + 4 < allYears.length) {
+      setStartIndex(startIndex + 1);
+    }
+  }
+
+  function showPreviousYears() {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+    }
+  }
 
   return (
     <section className="folderPreview">
@@ -252,16 +264,34 @@ function FolderPreview() {
         <p>Proposed improvement for long-term project retrieval</p>
       </div>
 
-      <div className="folderGrid">
-        {folders.map((year) => (
-          <article className="folderCard" key={year}>
-            <div className="folderIcon">📂</div>
-            <strong>{year} Projects</strong>
-            <p>Grouped designs, assets, and related folders</p>
-          </article>
-        ))}
+      <div className="folderSlider">
+        {startIndex > 0 && (
+          <button className="sliderArrow left" onClick={showPreviousYears}>
+            ‹
+          </button>
+        )}
+
+        <div className="folderWindow">
+          <div
+            className="folderTrack"
+            style={{ transform: `translateX(-${startIndex * 25}%)` }}
+          >
+            {allYears.map((year) => (
+              <article className="folderCard" key={year}>
+                <div className="folderIcon">📂</div>
+                <strong>{year} Projects</strong>
+                <p>Grouped designs, assets, and related folders</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {startIndex + 4 < allYears.length && (
+          <button className="sliderArrow right" onClick={showNextYears}>
+            ›
+          </button>
+        )}
       </div>
     </section>
   );
 }
-
