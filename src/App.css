@@ -1526,3 +1526,26 @@ button {
   color: #6b6475;
   font-size: 13px;
 }
+
+/* Align view tool buttons */
+.viewTools div {
+  align-items: center !important;
+}
+
+.viewTools button,
+.viewTools .addButton,
+.sortButton {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  border-radius: 50% !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+.viewTools .addButton {
+  font-size: 24px !important;
+}
