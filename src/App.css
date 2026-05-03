@@ -1489,3 +1489,8 @@ button {
 .monthProjectSection .sliderArrow {
   top: 34% !important;
 }
+
+/* Heading for sorted grid/list views */
+.sortedHeading {
+  margin-bottom: 18px;
+}

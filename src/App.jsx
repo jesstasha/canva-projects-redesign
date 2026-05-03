@@ -427,6 +427,12 @@ function ProjectTable({ sortBy, setSortBy, selectedYear, viewMode, setViewMode }
         <MonthlyList projects={filteredProjects} />
       )}
 
+      {sortBy !== "Month" && (
+        <div className="sectionTitle sortedHeading">
+          <h3>{sortBy}</h3>
+        </div>
+      )}
+
       {sortBy !== "Month" && viewMode === "grid" && (
         <SortedGrid projects={sortedProjects} />
       )}
