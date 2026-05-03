@@ -295,7 +295,11 @@ function Filters({ selectedYear, setSelectedYear }) {
 
   return (
     <div className="filters">
-      <button className="clearFilter">×</button>
+      {selectedYear && (
+  <button className="clearFilter" onClick={() => setSelectedYear(null)}>
+    ×
+  </button>
+)}
 
       <button className="filter active">Designs ▾</button>
       <button className="filter">Category ▾</button>
@@ -425,6 +429,32 @@ function FolderSection({ selectedYear }) {
     </section>
   );
 }
+
+
+function MainProjectsPage() {
+  return (
+    <>
+      <FolderPreview />
+      <FolderSection />
+      <div className="projectArea">
+        <div className="sectionTitle sortedHeading">
+          <h3>All projects</h3>
+        </div>
+
+        <div className="projectCardRow">
+          {projects.map((project) => (
+            <article className="recentProjectCard" key={project.id}>
+              <div className="recentThumb">{project.thumbnail}</div>
+              <strong>{project.title}</strong>
+              <p>• Edited {project.edited}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
 
 function ProjectTable({ sortBy, setSortBy, selectedYear, viewMode, setViewMode }) {
   const yearNum = parseInt(selectedYear);
