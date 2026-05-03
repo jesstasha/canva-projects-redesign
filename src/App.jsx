@@ -571,27 +571,23 @@ function MonthlyArchive({ selectedYear }) {
                   </div>
                 </div>
 
-                <button
-                  className={`sliderArrow left ${julyStartIndex === 0 ? "disabled" : ""}`}
-                  onClick={() => setJulyStartIndex(Math.max(julyStartIndex - 1, 0))}
-                  disabled={julyStartIndex === 0}
-                >
-                  ‹
-                </button>
+                {julyStartIndex > 0 && (
+                  <button
+                    className="sliderArrow left"
+                    onClick={() => setJulyStartIndex(Math.max(julyStartIndex - 1, 0))}
+                  >
+                    ‹
+                  </button>
+                )}
 
-                <button
-                  className={`sliderArrow right ${julyStartIndex + 4 >= group.projects.length ? "disabled" : ""}`}
-                  onClick={() =>
-                    setJulyStartIndex(
-                      julyStartIndex + 4 < group.projects.length
-                        ? julyStartIndex + 1
-                        : julyStartIndex
-                    )
-                  }
-                  disabled={julyStartIndex + 4 >= group.projects.length}
-                >
-                  ›
-                </button>
+                {julyStartIndex + 4 < group.projects.length && (
+                  <button
+                    className="sliderArrow right"
+                    onClick={() => setJulyStartIndex(julyStartIndex + 1)}
+                  >
+                    ›
+                  </button>
+                )}
               </div>
             ) : (
               <div className="projectCardRow">
@@ -637,13 +633,11 @@ function FolderPreview() {
       </div>
 
       <div className="folderSlider">
-        <button
-          className={`sliderArrow left ${startIndex === 0 ? "disabled" : ""}`}
-          onClick={showPreviousProjects}
-          disabled={startIndex === 0}
-        >
-          ‹
-        </button>
+        {startIndex > 0 && (
+          <button className="sliderArrow left" onClick={showPreviousProjects}>
+            ‹
+          </button>
+        )}
 
         <div className="folderWindow">
           <div
@@ -660,13 +654,11 @@ function FolderPreview() {
           </div>
         </div>
 
-        <button
-          className={`sliderArrow right ${startIndex + 4 >= recentProjects.length ? "disabled" : ""}`}
-          onClick={showNextProjects}
-          disabled={startIndex + 4 >= recentProjects.length}
-        >
-          ›
-        </button>
+        {startIndex + 4 < recentProjects.length && (
+          <button className="sliderArrow right" onClick={showNextProjects}>
+            ›
+          </button>
+        )}
       </div>
     </section>
   );
