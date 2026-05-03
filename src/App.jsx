@@ -257,6 +257,7 @@ export default function App() {
         <TopHero />
         <Filters selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
         <FolderPreview />
+        <FolderSection selectedYear={selectedYear} />
         <ProjectTable
           sortBy={sortBy}
           setSortBy={setSortBy}
@@ -379,6 +380,49 @@ function editedToDays(edited) {
   return 0;
 }
 
+
+function FolderSection({ selectedYear }) {
+  const [openFolders, setOpenFolders] = useState(true);
+  const yearNum = parseInt(selectedYear);
+
+  const folders = [...new Set(
+    projects
+      .filter((project) => project.year === yearNum)
+      .map((project) => project.folder)
+  )];
+
+  return (
+    <section className="folderSection">
+      <button
+        className="folderToggleTitle"
+        onClick={() => setOpenFolders(!openFolders)}
+      >
+        <span>{openFolders ? "⌄" : "›"}</span>
+        <h3>Folders</h3>
+      </button>
+
+      {openFolders && (
+        <div className="folderGrid">
+          {folders.map((folder) => (
+            <article className="folderListCard" key={folder}>
+              <div className="folderIcon">📁</div>
+              <div>
+                <strong>{folder}</strong>
+                <p>
+                  {projects.filter(
+                    (project) =>
+                      project.year === yearNum && project.folder === folder
+                  ).length} item(s)
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
 function ProjectTable({ sortBy, setSortBy, selectedYear, viewMode, setViewMode }) {
   const yearNum = parseInt(selectedYear);
   const filteredProjects = projects.filter((project) => project.year === yearNum);
@@ -418,6 +462,12 @@ function ProjectTable({ sortBy, setSortBy, selectedYear, viewMode, setViewMode }
           <button className="addButton">＋</button>
         </div>
       </div>
+
+      {sortBy === "Month" && (
+        <div className="sectionTitle sortedHeading">
+          <h3>Month</h3>
+        </div>
+      )}
 
       {sortBy === "Month" && viewMode === "grid" && (
         <MonthlyArchive selectedYear={selectedYear} />

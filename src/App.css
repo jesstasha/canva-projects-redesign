@@ -1686,3 +1686,20 @@ button {
   gap: 26px 48px !important;
   align-items: center !important;
 }
+
+/* Unified Canva-like section heading sizes */
+.folderPreview .sectionTitle h3,
+.folderToggleTitle h3,
+.sortedHeading h3 {
+  font-size: 24px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+  font-weight: 700 !important;
+}
+
+/* Month names like January/July should be smaller */
+.monthProjectSection .sectionTitle h3 {
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+}
