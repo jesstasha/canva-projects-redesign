@@ -256,15 +256,21 @@ export default function App() {
       <main className="mainContent">
         <TopHero />
         <Filters selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
-        <FolderPreview />
-        <FolderSection selectedYear={selectedYear} />
-        <ProjectTable
+        {selectedYear ? (
+          <>
+            <FolderPreview />
+            <FolderSection selectedYear={selectedYear} />
+            <ProjectTable
           sortBy={sortBy}
           setSortBy={setSortBy}
           selectedYear={selectedYear}
           viewMode={viewMode}
           setViewMode={setViewMode}
         />
+          </>
+        ) : (
+          <MainProjectsPage />
+        )}
       </main>
     </div>
   );
@@ -431,11 +437,43 @@ function FolderSection({ selectedYear }) {
 }
 
 
+
+function ProjectGroups() {
+  const groups = [
+    { name: "Game Design Portfolio", items: ["🎮","📄","📊"] },
+    { name: "Resume", items: ["📄","🧾"] },
+    { name: "Canva Redesign", items: ["🎨","📱","🖥️"] },
+    { name: "Social Campaign", items: ["📱","🎥","📸"] }
+  ];
+
+  return (
+    <section className="projectArea">
+      <div className="sectionTitle sortedHeading">
+        <h3>Projects</h3>
+      </div>
+
+      <div className="projectCardRow">
+        {groups.map((g) => (
+          <article className="recentProjectCard" key={g.name}>
+            <div className="recentThumb">
+              {g.items.map((i, idx) => <span key={idx}>{i}</span>)}
+            </div>
+            <strong>{g.name}</strong>
+            <p>Auto-grouped</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+
 function MainProjectsPage() {
   return (
     <>
       <FolderPreview />
       <FolderSection />
+      <ProjectGroups />
       <div className="projectArea">
         <div className="sectionTitle sortedHeading">
           <h3>All projects</h3>
