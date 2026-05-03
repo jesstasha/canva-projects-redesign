@@ -1549,3 +1549,31 @@ button {
 .viewTools .addButton {
   font-size: 24px !important;
 }
+
+/* Remove circle from icon buttons except + */
+.viewTools button:not(.addButton) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: auto !important;
+  height: auto !important;
+  font-size: 18px;
+}
+
+/* Keep + button as floating circle */
+.viewTools .addButton {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  background: white !important;
+  border: 1px solid #e8e2ef !important;
+  box-shadow: 0 6px 16px rgba(52, 35, 87, 0.12) !important;
+  font-size: 24px !important;
+}
+
+/* Ensure vertical alignment */
+.viewTools div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
