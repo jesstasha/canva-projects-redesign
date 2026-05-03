@@ -319,11 +319,13 @@ function MonthlyArchive() {
     },
   ];
 
-  function showNextJulyProjects() {
+  function handleJulySlide() {
     const julyProjects = monthGroups.find((group) => group.month === "July").projects;
 
     if (julyStartIndex + 4 < julyProjects.length) {
       setJulyStartIndex(julyStartIndex + 1);
+    } else {
+      setJulyStartIndex(0);
     }
   }
 
@@ -356,11 +358,9 @@ function MonthlyArchive() {
                   </div>
                 </div>
 
-                {julyStartIndex + 4 < group.projects.length && (
-                  <button className="sliderArrow" onClick={showNextJulyProjects}>
-                    ›
-                  </button>
-                )}
+                <button className="sliderArrow" onClick={handleJulySlide}>
+                  {julyStartIndex + 4 < group.projects.length ? "›" : "‹"}
+                </button>
               </div>
             ) : (
               <div className="projectCardRow">
