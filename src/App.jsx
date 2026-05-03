@@ -143,6 +143,26 @@ const projects = [
     edited: "6 months ago",
     thumbnail: "🖥️",
   },
+  {
+    id: 15,
+    title: "Early Canva Layout Study",
+    folder: "Design Research",
+    type: "Moodboard",
+    year: 2022,
+    month: "November",
+    edited: "4 years ago",
+    thumbnail: "📐",
+  },
+  {
+    id: 16,
+    title: "First Portfolio Draft",
+    folder: "Career / Portfolio",
+    type: "Presentation",
+    year: 2022,
+    month: "August",
+    edited: "4 years ago",
+    thumbnail: "🌱",
+  },
 ];
 
 function IconRail({ onToggle }) {
