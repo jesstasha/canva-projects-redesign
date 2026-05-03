@@ -205,13 +205,54 @@ function Filters() {
   );
 }
 
+function SortDropdown() {
+  const [openSort, setOpenSort] = useState(false);
+  const [sortBy, setSortBy] = useState("Month");
+
+  const sortOptions = [
+    "Month",
+    "Newest edited",
+    "Oldest edited",
+    "Alphabetical (A-Z)",
+    "Alphabetical (Z-A)",
+  ];
+
+  return (
+    <div className="sortDropdown">
+      <button className="sortButton" onClick={() => setOpenSort(!openSort)}>
+        ↕
+      </button>
+
+      {openSort && (
+        <div className="sortMenu">
+          <div className="sortTitle">Sort by</div>
+
+          {sortOptions.map((option) => (
+            <button
+              key={option}
+              className={`sortItem ${sortBy === option ? "selected" : ""}`}
+              onClick={() => {
+                setSortBy(option);
+                setOpenSort(false);
+              }}
+            >
+              <span>{option}</span>
+              {sortBy === option && <span>✓</span>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ProjectTable() {
   return (
     <section className="projectArea">
       <div className="viewTools">
         <span></span>
         <div>
-          <button>↕</button>
+          <SortDropdown />
           <button>▦</button>
           <button className="addButton">＋</button>
         </div>

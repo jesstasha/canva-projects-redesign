@@ -1169,3 +1169,61 @@ button {
   color: #4a405a;
 }
 
+
+.sortDropdown {
+  position: relative;
+}
+
+.sortButton {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  background: white;
+  border: 1px solid #e8e2ef;
+  font-size: 18px;
+}
+
+.sortMenu {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 300px;
+  background: white;
+  border: 1px solid #eee8f8;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(52, 35, 87, 0.16);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.sortTitle {
+  padding: 16px;
+  font-weight: 800;
+  font-size: 18px;
+  border-bottom: 1px solid #eee8f8;
+}
+
+.viewTools .sortMenu {
+  display: block !important;
+}
+
+.sortMenu .sortItem {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 14px 16px !important;
+  background: white;
+  font-size: 15px;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  text-align: left;
+}
+
+.sortMenu .sortItem:hover,
+.sortMenu .sortItem.selected {
+  background: #f1eff5;
+}
+
