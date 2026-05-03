@@ -302,6 +302,8 @@ function ProjectTable({ sortBy, setSortBy }) {
   );
 }
 function MonthlyArchive() {
+  const [julyStartIndex, setJulyStartIndex] = useState(0);
+
   const monthGroups = [
     {
       month: "January",
@@ -313,14 +315,23 @@ function MonthlyArchive() {
     },
     {
       month: "July",
-      projects: [...projects, ...projects], // 일부러 많게
+      projects: [...projects, ...projects],
     },
   ];
+
+  function showNextJulyProjects() {
+    const julyProjects = monthGroups.find((group) => group.month === "July").projects;
+
+    if (julyStartIndex + 4 < julyProjects.length) {
+      setJulyStartIndex(julyStartIndex + 1);
+    }
+  }
 
   return (
     <>
       {monthGroups.map((group) => {
         const isHeavy = group.projects.length > 4;
+        const slideIndex = group.month === "July" ? julyStartIndex : 0;
 
         return (
           <section className="monthProjectSection" key={group.month}>
@@ -331,7 +342,10 @@ function MonthlyArchive() {
             {isHeavy ? (
               <div className="folderSlider">
                 <div className="folderWindow">
-                  <div className="folderTrack">
+                  <div
+                    className="folderTrack"
+                    style={{ transform: `translateX(-${slideIndex * 25}%)` }}
+                  >
                     {group.projects.map((project, idx) => (
                       <article className="recentProjectCard" key={idx}>
                         <div className="recentThumb">{project.thumbnail}</div>
@@ -342,7 +356,11 @@ function MonthlyArchive() {
                   </div>
                 </div>
 
-                <button className="sliderArrow">›</button>
+                {julyStartIndex + 4 < group.projects.length && (
+                  <button className="sliderArrow" onClick={showNextJulyProjects}>
+                    ›
+                  </button>
+                )}
               </div>
             ) : (
               <div className="projectCardRow">
