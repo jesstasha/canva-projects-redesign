@@ -133,6 +133,16 @@ const projects = [
     edited: "6 months ago",
     thumbnail: "✨",
   },
+  {
+    id: 14,
+    title: "July Portfolio Mockup",
+    folder: "Career / Portfolio",
+    type: "Website Design",
+    year: 2026,
+    month: "July",
+    edited: "6 months ago",
+    thumbnail: "🖥️",
+  },
 ];
 
 function IconRail({ onToggle }) {
