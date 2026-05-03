@@ -1800,3 +1800,47 @@ button {
   margin-left: auto;
   font-size: 16px;
 }
+
+/* Reduce empty space in sort dropdown */
+.sortMenu {
+  width: 240px !important;
+}
+
+.sortMenu .sortItem {
+  width: 100% !important;
+}
+
+.sortItemLeft {
+  flex: 1 !important;
+}
+
+/* Make dropdown hover fill the full row width */
+.sortMenu .sortItem,
+.dropdownItem {
+  width: 100% !important;
+  display: flex !important;
+  box-sizing: border-box !important;
+}
+
+.sortMenu .sortItem:hover,
+.dropdownItem:hover,
+.sortMenu .sortItem.selected:hover,
+.dropdownItem.selected:hover {
+  background: #f1eff5 !important;
+}
+
+/* Override viewTools icon-button rule inside sort menu */
+.viewTools .sortMenu .sortItem {
+  width: 100% !important;
+  min-width: 100% !important;
+  height: auto !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background: white !important;
+}
+
+.viewTools .sortMenu .sortItem:hover,
+.viewTools .sortMenu .sortItem.selected:hover {
+  background: #f1eff5 !important;
+}
