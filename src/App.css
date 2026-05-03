@@ -1227,3 +1227,98 @@ button {
   background: #f1eff5;
 }
 
+
+.monthlyArchive {
+  position: relative;
+}
+
+.monthCardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.monthCard {
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid #eee8f8;
+  background: #fbf9ff;
+  box-shadow: 0 8px 24px rgba(52, 35, 87, 0.06);
+}
+
+.monthCard p {
+  margin: 8px 0 0;
+  color: #6b6475;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.monthCard strong {
+  font-size: 14px;
+}
+
+
+.monthCardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.monthCard {
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid #eee8f8;
+  background: #fbf9ff;
+  box-shadow: 0 8px 24px rgba(52, 35, 87, 0.06);
+}
+
+.monthCard p {
+  margin: 8px 0 0;
+  color: #6b6475;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.monthCard strong {
+  font-size: 14px;
+}
+
+
+.monthProjectSection {
+  margin-top: 8px;
+}
+
+.projectCardRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.recentProjectCard {
+  min-width: 0;
+}
+
+.recentThumb {
+  height: 120px;
+  border-radius: 12px;
+  background: #f2f0f6;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.recentProjectCard strong {
+  display: block;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recentProjectCard p {
+  margin: 5px 0 0;
+  color: #6b6475;
+  font-size: 13px;
+}
+

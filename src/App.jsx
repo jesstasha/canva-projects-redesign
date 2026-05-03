@@ -8,6 +8,7 @@ const projects = [
     folder: "Teaching Materials",
     type: "A4 Landscape",
     year: 2026,
+    month: "January",
     edited: "2 days ago",
     thumbnail: "🧮",
   },
@@ -17,6 +18,7 @@ const projects = [
     folder: "Career / Portfolio",
     type: "Presentation",
     year: 2026,
+    month: "January",
     edited: "3 days ago",
     thumbnail: "✨",
   },
@@ -26,6 +28,7 @@ const projects = [
     folder: "University Projects",
     type: "Document",
     year: 2025,
+    month: "March",
     edited: "20 days ago",
     thumbnail: "🎲",
   },
@@ -35,6 +38,7 @@ const projects = [
     folder: "Social Media",
     type: "Post",
     year: 2024,
+    month: "July",
     edited: "8 months ago",
     thumbnail: "📱",
   },
@@ -44,6 +48,7 @@ const projects = [
     folder: "Design Research",
     type: "Moodboard",
     year: 2023,
+    month: "October",
     edited: "2 years ago",
     thumbnail: "🎨",
   },
@@ -129,6 +134,7 @@ function Sidebar({ collapsed, onToggle }) {
 
 export default function App() {
   const [collapsed, setCollapsed] = useState(false);
+  const [sortBy, setSortBy] = useState("Month");
 
   return (
     <div className="app">
@@ -138,7 +144,7 @@ export default function App() {
         <TopHero />
         <Filters />
         <FolderPreview />
-        <ProjectTable />
+        <ProjectTable sortBy={sortBy} setSortBy={setSortBy} />
       </main>
     </div>
   );
@@ -205,9 +211,8 @@ function Filters() {
   );
 }
 
-function SortDropdown() {
+function SortDropdown({ sortBy, setSortBy }) {
   const [openSort, setOpenSort] = useState(false);
-  const [sortBy, setSortBy] = useState("Month");
 
   const sortOptions = [
     "Month",
@@ -246,18 +251,22 @@ function SortDropdown() {
   );
 }
 
-function ProjectTable() {
+function ProjectTable({ sortBy, setSortBy }) {
   return (
     <section className="projectArea">
       <div className="viewTools">
         <span></span>
         <div>
-          <SortDropdown />
+          <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
           <button>▦</button>
           <button className="addButton">＋</button>
         </div>
       </div>
 
+      {sortBy === "Month" ? (
+        <MonthlyArchive />
+      ) : (
+        <>
       <div className="tableHeader canvaListHeader">
         <span>Name</span>
         <span>People</span>
@@ -286,9 +295,43 @@ function ProjectTable() {
           </div>
         </div>
       ))}
+
+        </>
+      )}
     </section>
   );
 }
+function MonthlyArchive() {
+  const monthGroups = [
+    {
+      month: "January",
+      projects: projects.filter((project) => project.year === 2026),
+    },
+  ].filter((group) => group.projects.length > 0);
+
+  return (
+    <>
+      {monthGroups.map((group) => (
+        <section className="monthProjectSection" key={group.month}>
+          <div className="sectionTitle">
+            <h3>{group.month}</h3>
+          </div>
+
+          <div className="projectCardRow">
+            {group.projects.map((project) => (
+              <article className="recentProjectCard" key={project.id}>
+                <div className="recentThumb">{project.thumbnail}</div>
+                <strong>{project.title}</strong>
+                <p>• Edited {project.edited}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </>
+  );
+}
+
 function FolderPreview() {
   const allYears = ["2026", "2025", "2024", "2023", "2022", "2021", "2020"];
   const [startIndex, setStartIndex] = useState(0);
