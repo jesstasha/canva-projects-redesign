@@ -1322,3 +1322,80 @@ button {
   font-size: 13px;
 }
 
+
+.folderSlider {
+  position: relative;
+}
+
+.folderWindow {
+  overflow: hidden;
+}
+
+.folderTrack {
+  display: flex;
+  gap: 16px;
+}
+
+.sliderArrow {
+  position: absolute;
+  right: 0;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #eee8f8;
+  font-size: 20px;
+}
+
+
+/* Match monthly project cards to the Year archive card sizing */
+.monthProjectSection {
+  margin-top: 32px;
+}
+
+.projectCardRow {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(140px, 1fr)) !important;
+  gap: 16px !important;
+}
+
+.recentProjectCard {
+  min-width: 0;
+  width: 100%;
+}
+
+.recentThumb {
+  height: 120px;
+  border-radius: 14px;
+  background: #f2f0f6;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.monthProjectSection .folderSlider {
+  position: relative;
+}
+
+.monthProjectSection .folderWindow {
+  overflow: hidden;
+  width: 100%;
+}
+
+.monthProjectSection .folderTrack {
+  display: flex !important;
+  gap: 16px !important;
+}
+
+.monthProjectSection .folderTrack .recentProjectCard {
+  flex: 0 0 calc((100% - 48px) / 4) !important;
+}
+
+.monthProjectSection .sliderArrow {
+  right: -22px;
+  z-index: 50;
+}
+

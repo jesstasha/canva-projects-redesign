@@ -305,29 +305,59 @@ function MonthlyArchive() {
   const monthGroups = [
     {
       month: "January",
-      projects: projects.filter((project) => project.year === 2026),
+      projects: projects.slice(0, 2),
     },
-  ].filter((group) => group.projects.length > 0);
+    {
+      month: "March",
+      projects: projects.slice(2, 4),
+    },
+    {
+      month: "July",
+      projects: [...projects, ...projects], // 일부러 많게
+    },
+  ];
 
   return (
     <>
-      {monthGroups.map((group) => (
-        <section className="monthProjectSection" key={group.month}>
-          <div className="sectionTitle">
-            <h3>{group.month}</h3>
-          </div>
+      {monthGroups.map((group) => {
+        const isHeavy = group.projects.length > 4;
 
-          <div className="projectCardRow">
-            {group.projects.map((project) => (
-              <article className="recentProjectCard" key={project.id}>
-                <div className="recentThumb">{project.thumbnail}</div>
-                <strong>{project.title}</strong>
-                <p>• Edited {project.edited}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-      ))}
+        return (
+          <section className="monthProjectSection" key={group.month}>
+            <div className="sectionTitle">
+              <h3>{group.month}</h3>
+            </div>
+
+            {isHeavy ? (
+              <div className="folderSlider">
+                <div className="folderWindow">
+                  <div className="folderTrack">
+                    {group.projects.map((project, idx) => (
+                      <article className="recentProjectCard" key={idx}>
+                        <div className="recentThumb">{project.thumbnail}</div>
+                        <strong>{project.title}</strong>
+                        <p>• Edited {project.edited}</p>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+
+                <button className="sliderArrow">›</button>
+              </div>
+            ) : (
+              <div className="projectCardRow">
+                {group.projects.map((project, idx) => (
+                  <article className="recentProjectCard" key={idx}>
+                    <div className="recentThumb">{project.thumbnail}</div>
+                    <strong>{project.title}</strong>
+                    <p>• Edited {project.edited}</p>
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+        );
+      })}
     </>
   );
 }
