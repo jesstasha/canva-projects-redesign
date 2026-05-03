@@ -247,6 +247,7 @@ export default function App() {
   const [collapsed, setCollapsed] = useState(false);
   const [sortBy, setSortBy] = useState("Month");
   const [selectedYear, setSelectedYear] = useState("2026");
+  const [viewMode, setViewMode] = useState("grid");
 
   return (
     <div className="app">
@@ -256,7 +257,13 @@ export default function App() {
         <TopHero />
         <Filters selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
         <FolderPreview />
-        <ProjectTable sortBy={sortBy} setSortBy={setSortBy} selectedYear={selectedYear} />
+        <ProjectTable
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          selectedYear={selectedYear}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+        />
       </main>
     </div>
   );
@@ -372,8 +379,11 @@ function editedToDays(edited) {
   return 0;
 }
 
-function ProjectTable({ sortBy, setSortBy, selectedYear }) {
-  const sortedProjects = [...projects].sort((a, b) => {
+function ProjectTable({ sortBy, setSortBy, selectedYear, viewMode, setViewMode }) {
+  const yearNum = parseInt(selectedYear);
+  const filteredProjects = projects.filter((project) => project.year === yearNum);
+
+  const sortedProjects = [...filteredProjects].sort((a, b) => {
     if (sortBy === "Newest edited") {
       return editedToDays(a.edited) - editedToDays(b.edited);
     }
@@ -399,15 +409,52 @@ function ProjectTable({ sortBy, setSortBy, selectedYear }) {
         <span></span>
         <div>
           <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
-          <button>▦</button>
+          <button
+            aria-label="Toggle view"
+            onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
+          >
+            {viewMode === "grid" ? "☰" : "▦"}
+          </button>
           <button className="addButton">＋</button>
         </div>
       </div>
 
-      {sortBy === "Month" ? (
+      {sortBy === "Month" && viewMode === "grid" && (
         <MonthlyArchive selectedYear={selectedYear} />
-      ) : (
-        <>
+      )}
+
+      {sortBy === "Month" && viewMode === "list" && (
+        <MonthlyList projects={filteredProjects} />
+      )}
+
+      {sortBy !== "Month" && viewMode === "grid" && (
+        <SortedGrid projects={sortedProjects} />
+      )}
+
+      {sortBy !== "Month" && viewMode === "list" && (
+        <SortedList projects={sortedProjects} />
+      )}
+    </section>
+  );
+}
+
+function SortedGrid({ projects }) {
+  return (
+    <div className="projectCardRow">
+      {projects.map((project) => (
+        <article className="recentProjectCard" key={project.id}>
+          <div className="recentThumb">{project.thumbnail}</div>
+          <strong>{project.title}</strong>
+          <p>• Edited {project.edited}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function SortedList({ projects }) {
+  return (
+    <>
       <div className="tableHeader canvaListHeader">
         <span>Name</span>
         <span>People</span>
@@ -416,7 +463,7 @@ function ProjectTable({ sortBy, setSortBy, selectedYear }) {
         <span></span>
       </div>
 
-      {sortedProjects.map((project) => (
+      {projects.map((project) => (
         <div className="projectRow canvaListRow" key={project.id}>
           <div className="projectName">
             <div className="thumb">{project.thumbnail}</div>
@@ -436,12 +483,32 @@ function ProjectTable({ sortBy, setSortBy, selectedYear }) {
           </div>
         </div>
       ))}
-
-        </>
-      )}
-    </section>
+    </>
   );
 }
+
+function MonthlyList({ projects }) {
+  const monthMap = {};
+
+  projects.forEach((project) => {
+    if (!monthMap[project.month]) monthMap[project.month] = [];
+    monthMap[project.month].push(project);
+  });
+
+  return (
+    <>
+      {Object.entries(monthMap).map(([month, monthProjects]) => (
+        <section className="monthProjectSection" key={month}>
+          <div className="sectionTitle">
+            <h3>{month}</h3>
+          </div>
+          <SortedList projects={monthProjects} />
+        </section>
+      ))}
+    </>
+  );
+}
+
 function MonthlyArchive({ selectedYear }) {
   const [julyStartIndex, setJulyStartIndex] = useState(0);
 
