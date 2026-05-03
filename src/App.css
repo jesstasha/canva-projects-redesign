@@ -1703,3 +1703,35 @@ button {
   line-height: 1.25 !important;
   font-weight: 700 !important;
 }
+
+/* Canva-like vertical rhythm between section headings and content */
+.folderPreview .sectionTitle {
+  margin-bottom: 22px !important;
+}
+
+.folderToggleTitle {
+  margin-bottom: 26px !important;
+}
+
+.sortedHeading {
+  margin-bottom: 24px !important;
+}
+
+/* More breathing room between major sections */
+.folderPreview {
+  padding-bottom: 28px !important;
+}
+
+.folderSection {
+  padding-top: 18px !important;
+  padding-bottom: 42px !important;
+}
+
+.projectArea {
+  padding-top: 26px !important;
+}
+
+/* Keep folder rows airy */
+.folderSection .folderGrid {
+  gap: 30px 56px !important;
+}
