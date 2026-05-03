@@ -1651,3 +1651,38 @@ button {
   grid-template-columns: repeat(3, minmax(160px, 1fr)) !important;
   gap: 18px 36px !important;
 }
+
+/* Make Folders toggle look like Canva text heading, not a button */
+.folderToggleTitle {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 0 22px !important;
+  width: fit-content !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.folderToggleTitle:hover {
+  background: transparent !important;
+}
+
+.folderToggleTitle span {
+  font-size: 18px !important;
+}
+
+.folderToggleTitle h3 {
+  margin: 0 !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+}
+
+/* Keep folder items aligned horizontally like Canva */
+.folderSection .folderGrid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(180px, 1fr)) !important;
+  gap: 26px 48px !important;
+  align-items: center !important;
+}
