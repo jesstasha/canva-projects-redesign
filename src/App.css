@@ -1494,3 +1494,35 @@ button {
 .sortedHeading {
   margin-bottom: 18px;
 }
+
+/* Recents slider cards */
+.recentPreviewCard {
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.recentPreviewCard .recentThumb {
+  height: 120px;
+  border-radius: 14px;
+  background: #f2f0f6;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.recentPreviewCard strong {
+  display: block;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recentPreviewCard p {
+  margin: 5px 0 0;
+  color: #6b6475;
+  font-size: 13px;
+}

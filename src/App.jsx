@@ -594,16 +594,19 @@ function MonthlyArchive({ selectedYear }) {
 }
 
 function FolderPreview() {
-  const allYears = ["2026", "2025", "2024", "2023", "2022", "2021", "2020"];
   const [startIndex, setStartIndex] = useState(0);
 
-  function showNextYears() {
-    if (startIndex + 4 < allYears.length) {
+  const recentProjects = [...projects]
+    .sort((a, b) => editedToDays(a.edited) - editedToDays(b.edited))
+    .slice(0, 7);
+
+  function showNextProjects() {
+    if (startIndex + 4 < recentProjects.length) {
       setStartIndex(startIndex + 1);
     }
   }
 
-  function showPreviousYears() {
+  function showPreviousProjects() {
     if (startIndex > 0) {
       setStartIndex(startIndex - 1);
     }
@@ -612,13 +615,12 @@ function FolderPreview() {
   return (
     <section className="folderPreview">
       <div className="sectionTitle">
-        <h3>Year-based archive</h3>
-        <p>Proposed improvement for long-term project retrieval</p>
+        <h3>Recents</h3>
       </div>
 
       <div className="folderSlider">
         {startIndex > 0 && (
-          <button className="sliderArrow" onClick={showPreviousYears}>
+          <button className="sliderArrow" onClick={showPreviousProjects}>
             ‹
           </button>
         )}
@@ -628,18 +630,18 @@ function FolderPreview() {
             className="folderTrack"
             style={{ transform: `translateX(-${startIndex * 25}%)` }}
           >
-            {allYears.map((year) => (
-              <article className="folderCard" key={year}>
-                <div className="folderIcon">📂</div>
-                <strong>{year} Projects</strong>
-                <p>Grouped designs, assets, and related folders</p>
+            {recentProjects.map((project) => (
+              <article className="folderCard recentPreviewCard" key={project.id}>
+                <div className="recentThumb">{project.thumbnail}</div>
+                <strong>{project.title}</strong>
+                <p>• Edited {project.edited}</p>
               </article>
             ))}
           </div>
         </div>
 
-        {startIndex + 4 < allYears.length && (
-          <button className="sliderArrow right" onClick={showNextYears}>
+        {startIndex + 4 < recentProjects.length && (
+          <button className="sliderArrow right" onClick={showNextProjects}>
             ›
           </button>
         )}
