@@ -1408,3 +1408,17 @@ button {
   margin-bottom: 10px;
 }
 
+
+.selectedYearCard {
+  border-color: #8b3dff !important;
+  background: #f4efff !important;
+}
+
+.monthProjectSection .sectionTitle {
+  margin-bottom: 18px;
+}
+
+.monthProjectSection {
+  margin-top: 32px;
+}
+

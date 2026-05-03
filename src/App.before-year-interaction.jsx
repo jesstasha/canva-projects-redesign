@@ -32,47 +32,6 @@ const projects = [
     edited: "20 days ago",
     thumbnail: "🎲",
   },
-
-  {
-    id: 6,
-    title: "CISSA Website Redesign",
-    folder: "University Projects",
-    type: "Presentation",
-    year: 2025,
-    month: "January",
-    edited: "4 months ago",
-    thumbnail: "💻",
-  },
-  {
-    id: 7,
-    title: "Brand Identity Kit",
-    folder: "Career / Portfolio",
-    type: "A4",
-    year: 2025,
-    month: "March",
-    edited: "5 months ago",
-    thumbnail: "🎨",
-  },
-  {
-    id: 8,
-    title: "Event Poster Series",
-    folder: "Social Media",
-    type: "Instagram Post",
-    year: 2025,
-    month: "June",
-    edited: "7 months ago",
-    thumbnail: "🎪",
-  },
-  {
-    id: 9,
-    title: "UX Research Moodboard",
-    folder: "Design Research",
-    type: "Moodboard",
-    year: 2025,
-    month: "September",
-    edited: "9 months ago",
-    thumbnail: "🔍",
-  },
   {
     id: 4,
     title: "Instagram Campaign Draft",
@@ -176,7 +135,6 @@ function Sidebar({ collapsed, onToggle }) {
 export default function App() {
   const [collapsed, setCollapsed] = useState(false);
   const [sortBy, setSortBy] = useState("Month");
-  const [selectedYear, setSelectedYear] = useState("2026");
 
   return (
     <div className="app">
@@ -184,9 +142,9 @@ export default function App() {
 
       <main className="mainContent">
         <TopHero />
-        <Filters selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
+        <Filters />
         <FolderPreview />
-        <ProjectTable sortBy={sortBy} setSortBy={setSortBy} selectedYear={selectedYear} />
+        <ProjectTable sortBy={sortBy} setSortBy={setSortBy} />
       </main>
     </div>
   );
@@ -210,7 +168,7 @@ function TopHero() {
   );
 }
 
-function Filters({ selectedYear, setSelectedYear }) {
+function Filters() {
   const [openYear, setOpenYear] = useState(false);
 
   const years = ["2026", "2025", "2024", "2023", "2022"];
@@ -240,7 +198,14 @@ function Filters({ selectedYear, setSelectedYear }) {
             </button>
 
             {years.map((year) => (
-              <button className={`dropdownItem ${selectedYear === year ? "selected" : ""}`} key={year} onClick={() => { setSelectedYear(year); setOpenYear(false); }}>
+              <button
+                className="dropdownItem"
+                key={year}
+                onClick={() => {
+                  setOpenYear(false);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
                 {year}
               </button>
             ))}
@@ -293,7 +258,7 @@ function SortDropdown({ sortBy, setSortBy }) {
   );
 }
 
-function ProjectTable({ sortBy, setSortBy, selectedYear }) {
+function ProjectTable({ sortBy, setSortBy }) {
   return (
     <section className="projectArea">
       <div className="viewTools">
@@ -306,7 +271,7 @@ function ProjectTable({ sortBy, setSortBy, selectedYear }) {
       </div>
 
       {sortBy === "Month" ? (
-        <MonthlyArchive selectedYear={selectedYear} />
+        <MonthlyArchive />
       ) : (
         <>
       <div className="tableHeader canvaListHeader">
@@ -343,22 +308,23 @@ function ProjectTable({ sortBy, setSortBy, selectedYear }) {
     </section>
   );
 }
-function MonthlyArchive({ selectedYear }) {
+function MonthlyArchive() {
   const [julyStartIndex, setJulyStartIndex] = useState(0);
 
-  const yearNum = parseInt(selectedYear);
-  const filteredProjects = projects.filter(p => p.year === yearNum);
-
-  const monthMap = {};
-  filteredProjects.forEach(p => {
-    if (!monthMap[p.month]) monthMap[p.month] = [];
-    monthMap[p.month].push(p);
-  });
-
-  const monthGroups = Object.entries(monthMap).map(([month, projects]) => ({
-    month,
-    projects,
-  }));
+  const monthGroups = [
+    {
+      month: "January",
+      projects: projects.slice(0, 2),
+    },
+    {
+      month: "March",
+      projects: projects.slice(2, 4),
+    },
+    {
+      month: "July",
+      projects: [...projects, ...projects],
+    },
+  ];
 
   function handleJulySlide() {
     const julyProjects = monthGroups.find((group) => group.month === "July").projects;
