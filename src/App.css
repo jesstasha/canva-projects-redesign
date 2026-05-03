@@ -1577,3 +1577,27 @@ button {
   align-items: center;
   gap: 12px;
 }
+
+/* Canva-style two-way slider arrows */
+.folderSlider .sliderArrow.left,
+.monthProjectSection .sliderArrow.left {
+  left: -22px !important;
+  right: auto !important;
+}
+
+.folderSlider .sliderArrow.right,
+.monthProjectSection .sliderArrow.right {
+  right: -22px !important;
+  left: auto !important;
+}
+
+.sliderArrow.disabled {
+  opacity: 0.35 !important;
+  pointer-events: none !important;
+}
+
+/* Keep slider arrows visually consistent even when disabled */
+.sliderArrow.disabled {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}

@@ -571,8 +571,26 @@ function MonthlyArchive({ selectedYear }) {
                   </div>
                 </div>
 
-                <button className="sliderArrow" onClick={handleJulySlide}>
-                  {julyStartIndex + 4 < group.projects.length ? "›" : "‹"}
+                <button
+                  className={`sliderArrow left ${julyStartIndex === 0 ? "disabled" : ""}`}
+                  onClick={() => setJulyStartIndex(Math.max(julyStartIndex - 1, 0))}
+                  disabled={julyStartIndex === 0}
+                >
+                  ‹
+                </button>
+
+                <button
+                  className={`sliderArrow right ${julyStartIndex + 4 >= group.projects.length ? "disabled" : ""}`}
+                  onClick={() =>
+                    setJulyStartIndex(
+                      julyStartIndex + 4 < group.projects.length
+                        ? julyStartIndex + 1
+                        : julyStartIndex
+                    )
+                  }
+                  disabled={julyStartIndex + 4 >= group.projects.length}
+                >
+                  ›
                 </button>
               </div>
             ) : (
@@ -619,11 +637,13 @@ function FolderPreview() {
       </div>
 
       <div className="folderSlider">
-        {startIndex > 0 && (
-          <button className="sliderArrow" onClick={showPreviousProjects}>
-            ‹
-          </button>
-        )}
+        <button
+          className={`sliderArrow left ${startIndex === 0 ? "disabled" : ""}`}
+          onClick={showPreviousProjects}
+          disabled={startIndex === 0}
+        >
+          ‹
+        </button>
 
         <div className="folderWindow">
           <div
@@ -640,11 +660,13 @@ function FolderPreview() {
           </div>
         </div>
 
-        {startIndex + 4 < recentProjects.length && (
-          <button className="sliderArrow right" onClick={showNextProjects}>
-            ›
-          </button>
-        )}
+        <button
+          className={`sliderArrow right ${startIndex + 4 >= recentProjects.length ? "disabled" : ""}`}
+          onClick={showNextProjects}
+          disabled={startIndex + 4 >= recentProjects.length}
+        >
+          ›
+        </button>
       </div>
     </section>
   );
