@@ -1770,3 +1770,33 @@ button {
 .dropdownItem.selected:hover {
   background: #f1eff5 !important;
 }
+
+/* Canva-like sort dropdown rows */
+.sortMenu .sortItem {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 11px 16px !important;
+  min-height: 42px !important;
+}
+
+.sortItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.sortIcon {
+  width: 20px;
+  display: inline-flex;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.sortCheck {
+  margin-left: auto;
+  font-size: 16px;
+}

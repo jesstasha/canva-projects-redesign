@@ -335,11 +335,11 @@ function SortDropdown({ sortBy, setSortBy }) {
   const [openSort, setOpenSort] = useState(false);
 
   const sortOptions = [
-    "Month",
-    "Newest edited",
-    "Oldest edited",
-    "Alphabetical (A-Z)",
-    "Alphabetical (Z-A)",
+    { label: "Month", icon: "▦" },
+    { label: "Newest edited", icon: "◷" },
+    { label: "Oldest edited", icon: "◴" },
+    { label: "Alphabetical (A-Z)", icon: "↑" },
+    { label: "Alphabetical (Z-A)", icon: "↓" },
   ];
 
   return (
@@ -354,15 +354,18 @@ function SortDropdown({ sortBy, setSortBy }) {
 
           {sortOptions.map((option) => (
             <button
-              key={option}
-              className={`sortItem ${sortBy === option ? "selected" : ""}`}
+              key={option.label}
+              className={`sortItem ${sortBy === option.label ? "selected" : ""}`}
               onClick={() => {
-                setSortBy(option);
+                setSortBy(option.label);
                 setOpenSort(false);
               }}
             >
-              <span>{option}</span>
-              {sortBy === option && <span>✓</span>}
+              <span className="sortItemLeft">
+                <span className="sortIcon">{option.icon}</span>
+                <span>{option.label}</span>
+              </span>
+              {sortBy === option.label && <span className="sortCheck">✓</span>}
             </button>
           ))}
         </div>
