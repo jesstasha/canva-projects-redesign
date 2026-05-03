@@ -1735,3 +1735,38 @@ button {
 .folderSection .folderGrid {
   gap: 30px 56px !important;
 }
+
+/* Canva-like dropdown menu sizing and hover */
+.sortMenu {
+  width: 280px !important;
+}
+
+.sortTitle {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  padding: 14px 16px !important;
+}
+
+.sortMenu .sortItem,
+.dropdownItem {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  background: white !important;
+  padding: 12px 16px !important;
+}
+
+.sortMenu .sortItem.selected,
+.dropdownItem.selected {
+  background: white !important;
+  font-weight: 400 !important;
+}
+
+.sortMenu .sortItem:hover,
+.dropdownItem:hover {
+  background: #f1eff5 !important;
+}
+
+.sortMenu .sortItem.selected:hover,
+.dropdownItem.selected:hover {
+  background: #f1eff5 !important;
+}
