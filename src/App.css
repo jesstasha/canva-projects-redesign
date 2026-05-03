@@ -1399,3 +1399,12 @@ button {
   z-index: 50;
 }
 
+
+.monthProjectSection .sectionTitle {
+  margin-bottom: 18px;
+}
+
+.monthProjectSection h3 {
+  margin-bottom: 10px;
+}
+
