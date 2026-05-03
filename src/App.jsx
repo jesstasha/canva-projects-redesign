@@ -363,7 +363,36 @@ function SortDropdown({ sortBy, setSortBy }) {
   );
 }
 
+
+function editedToDays(edited) {
+  const number = parseInt(edited);
+  if (edited.includes("day")) return number;
+  if (edited.includes("month")) return number * 30;
+  if (edited.includes("year")) return number * 365;
+  return 0;
+}
+
 function ProjectTable({ sortBy, setSortBy, selectedYear }) {
+  const sortedProjects = [...projects].sort((a, b) => {
+    if (sortBy === "Newest edited") {
+      return editedToDays(a.edited) - editedToDays(b.edited);
+    }
+
+    if (sortBy === "Oldest edited") {
+      return editedToDays(b.edited) - editedToDays(a.edited);
+    }
+
+    if (sortBy === "Alphabetical (A-Z)") {
+      return a.title.localeCompare(b.title);
+    }
+
+    if (sortBy === "Alphabetical (Z-A)") {
+      return b.title.localeCompare(a.title);
+    }
+
+    return 0;
+  });
+
   return (
     <section className="projectArea">
       <div className="viewTools">
@@ -387,7 +416,7 @@ function ProjectTable({ sortBy, setSortBy, selectedYear }) {
         <span></span>
       </div>
 
-      {projects.map((project) => (
+      {sortedProjects.map((project) => (
         <div className="projectRow canvaListRow" key={project.id}>
           <div className="projectName">
             <div className="thumb">{project.thumbnail}</div>
